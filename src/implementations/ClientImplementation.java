@@ -28,7 +28,7 @@ public class ClientImplementation implements ClientInterface {
             return random.nextInt(max - min + 1) + min;
         }*/
 
-        @Override
+    //    @Override
     //    public Client add(Client client) {
             // Generate a random matricule
           /*  Integer generatedCode = generateUniqueCode();
@@ -61,7 +61,7 @@ public class ClientImplementation implements ClientInterface {
             }
         }*/
 
-
+@Override
     public Optional<Client> add(Client client) {
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();

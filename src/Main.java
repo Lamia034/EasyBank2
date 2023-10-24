@@ -1,20 +1,14 @@
-import dto.*;
 import helper.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.*;
 
 import implementations.*;
 import services.AgencyService;
+import services.PosteService;
 import services.Services;
 import views.AgencyView;
-
-import java.time.format.DateTimeFormatter;
-
-
-import java.util.stream.Collectors;
+import views.PosteView;
 
 
 public class Main {
@@ -23,19 +17,21 @@ public class Main {
 
 
     public static void main(String[] args) throws SQLException {
-        // Create a DatabaseConnection instance
+
         DatabaseConnection dbConnection = DatabaseConnection.getInstance();
 
-        // Create an AgencyImplementation instance
         AgencyImplementation agencyImplementation = new AgencyImplementation();
 
-        // Create an AgencyService instance, injecting the AgencyImplementation dependency
         AgencyService agencyService = new AgencyService(agencyImplementation);
 
-        // Create an AgencyView instance, injecting the AgencyService dependency
         AgencyView agencyview = new AgencyView(agencyService);
+///////////////////////////////
 
+        PosteImplementation posteImplementation = new PosteImplementation();
 
+        PosteService posteService = new PosteService(posteImplementation);
+
+        PosteView posteview = new PosteView(posteService);
 
         Connection conn = dbConnection.getConnection();
         System.out.println(conn);
@@ -82,7 +78,14 @@ public class Main {
             System.out.println("* 30. Delete Affectation            *");
             System.out.println("* 31. Statistics Affectations       *");
             System.out.println("* 32. add new agency                *");
-            System.out.println("* 40. Exit                          *");
+            System.out.println("* 33. search agency  by code        *");
+            System.out.println("* 34. Create new Poste              *");
+            System.out.println("* 35. Delete Agency                 *");
+            System.out.println("* 36. search Agency by adress       *");
+            System.out.println("* 37. Update Agency                 *");
+            System.out.println("* 38. Display History Post(affectations)*");
+            System.out.println("* 39. Affect account to an agency   *");
+            System.out.println("* 100. Exit                          *");
             System.out.println("************************************");
 
 
@@ -216,8 +219,6 @@ public class Main {
                     break;
                 case 27: // List ALL missions
                 services.listallmissions();
-
-
                     break;
                 case 28: // Add affectation
                  services.addaffectation();
@@ -247,6 +248,29 @@ public class Main {
                     break;
                 case 32:
                     agencyview.addagency();
+                    break;
+                case 33:
+                    agencyview.searchagencybycode();
+                    break;
+
+                case 34:
+                    posteview.affectemployeetoagency();
+                    break;
+
+                case 35:
+                    agencyview.deleteagency();
+                    break;
+                case 36:
+                    agencyview.searchagencybyadresse();
+                    break;
+                case 37:
+                    agencyview.updateagency();
+                    break;
+                case 38:
+                    posteview.displayall();
+                    break;
+                case 39:
+                    agencyview.affectaccounttoagency();
                     break;
                 case 40:
                     exit = true;

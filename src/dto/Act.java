@@ -1,6 +1,4 @@
 package dto;
-
-import java.time.LocalDate;
 import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -8,10 +6,7 @@ import java.util.List;
 
 @Data
 @NotNull
-
-public class Poste {
+public class Act {
     private Employee employee;
     private Agency agency;
-    private LocalDate startdate;
-    private LocalDate enddate;
 }
